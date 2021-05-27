@@ -1,3 +1,3 @@
 import sys
 
-sys.path.append("../")
+sys.path.append("../filswan_client/")

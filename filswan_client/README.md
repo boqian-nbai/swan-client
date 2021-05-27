@@ -1,10 +1,13 @@
 # Client Tool Guide
 
-This tool is designed for client to complete the process of sending deals through the following steps:
+Swan Client provides the following functions:
 
-1. Batch generate car files for files under a specified folder.
-2. Share the car file via webserver or hard disk.
-3. Propose the deals to a specified miner.
+* Encrypt and decrypt file with AES.
+* Generate Car files from downloaded source files with or without Lotus.
+* Generate metadata e.g. Car file URI, start epoch, etc. and save them to a metadata CSV file.
+* Propose deals based on the metadata CSV file.
+* Generate a final CSV file contains deal CIDs and miner id for miner to import deals.
+* Create tasks on Swan Platform.
 
 ## Basic Concept
 
@@ -30,7 +33,8 @@ uuid is generated for future index purpose.
 
 ## Prerequisite
 
-- lotus node
+- Lotus node
+- go 1.15+  
 - python 3.7+
 - pip3
 
@@ -155,9 +159,9 @@ Credits should be given to jokkebk for the encryption and decryption process. Mo
 
 ### Step 1. Generate Car files for offline deal
 
-For both public task and offline task, you need to generate Car files
+For both public task and private task, you need to generate Car files
 
-#### Step 1.1 Generate Car files for offline deal (option 1)
+#### Step 1.1 Generate Car files using Lotus (option 1)
 ```shell
 python3 swan_cli.py car --input-dir [input_files_dir] --out-dir [car_files_output_dir] 
 ```
@@ -176,7 +180,7 @@ If --out-dir is not provided, then the output directory for the car files will b
 
 For example: /tmp/tasks/7f33a9d6-47d0-4635-b152-5e380733bf09
 
-#### Step 1.2 Generate Car files for offline deal locally (option 2)
+#### Step 1.2 Generate Car files without using Lotus (option 2)
 
 To use the generation locally, make sure go is available before starting.
 
@@ -185,7 +189,7 @@ Generate car files using golang
 ```shell
 python3 swan_cli.py gocar --input-dir [input_files_dir] --out-dir [car_files_output_dir] 
 ```
-Credits should be given to filedrive-team. More information can be found in https://github.com/GuohaoMa/go-graphsplit.
+Credits should be given to filedrive-team. More information can be found in https://github.com/filedrive-team/go-graphsplit.
 
 ### Step 2: Upload Car files to webserver or ipfs server
 
